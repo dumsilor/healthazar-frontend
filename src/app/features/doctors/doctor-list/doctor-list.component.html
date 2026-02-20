@@ -1,0 +1,16 @@
+<h2>Find Doctors</h2>
+
+<div  style="margin-bottom: 20px;">
+    <select [(ngModel)]="city" (change)="onFilterChange()">
+        <option value="">All Cities</option>
+        <option value="Dhaka">Dhaka</option>
+        <option value="Chittagong">Chittagong</option>
+        <option value="Khulna">Khulna</option>
+    </select>
+    <select [(ngModel)]="specialty" (change)="onFilterChange()">
+        <option value="">All Specialties</option>
+        <option value="Cardiologist">Cardiologist</option>
+    </select>
+    
+
+</div>
