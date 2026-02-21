@@ -1,16 +1,39 @@
-<h2>Find Doctors</h2>
+<div>
+  <h2>Find Doctors</h2>
 
-<div  style="margin-bottom: 20px;">
+  <div style="margin-bottom: 20px;">
     <select [(ngModel)]="city" (change)="onFilterChange()">
-        <option value="">All Cities</option>
-        <option value="Dhaka">Dhaka</option>
-        <option value="Chittagong">Chittagong</option>
-        <option value="Khulna">Khulna</option>
+      <option value="">All Cities</option>
+      <option value="Dhaka">Dhaka</option>
+      <option value="Chittagong">Chittagong</option>
+      <option value="Khulna">Khulna</option>
     </select>
     <select [(ngModel)]="specialty" (change)="onFilterChange()">
-        <option value="">All Specialties</option>
-        <option value="Cardiologist">Cardiologist</option>
+      <option value="">All Specialties</option>
+      <option value="Cardiologist">Cardiologist</option>
     </select>
-    
+
+
+  </div>
+</div>
+<div>
+  <h2>All Doctors</h2>
+
+  <div *ngFor="let doctor of doctors">
+    <h3>
+      {{ doctor.name }}
+    </h3>
+    <p>
+      {{ doctor.specialty }} -
+      {{ doctor.city }}
+    </p>
+    <p>Hospital:
+      {{ doctor.hospital }}
+    </p>
+    <p>Fee:
+      {{ doctor.fee }}
+    </p>
+    <hr />
+  </div>
 
 </div>
