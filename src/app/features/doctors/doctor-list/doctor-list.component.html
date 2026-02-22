@@ -12,6 +12,11 @@
       <option value="">All Specialties</option>
       <option value="Cardiologist">Cardiologist</option>
     </select>
+    <select [(ngModel)]="hospital" (change)="onFilterChange()">
+      <option value="">All Hospital</option>
+      <option value="Square Hospital">Square</option>
+      <option value="ibneSina">Ibne Sina</option>
+    </select>
 
 
   </div>

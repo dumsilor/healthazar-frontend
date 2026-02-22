@@ -29,7 +29,6 @@ export class DoctorService {
     hospital?: string;
   }): Observable<Doctor[]> {
     let filteredDoctors = this.mockDoctors;
-    console.log(filters);
     if (filters?.specialty) {
       filteredDoctors = filteredDoctors.filter(
         (doctor) =>
@@ -44,6 +43,8 @@ export class DoctorService {
     }
 
     if (filters?.hospital) {
+      console.log(filters.hospital);
+
       filteredDoctors = filteredDoctors.filter(
         (doctor) =>
           doctor.hospital.toLowerCase() === filters.hospital?.toLowerCase(),

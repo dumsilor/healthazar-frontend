@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Doctor } from '../../../core/models/doctors.model';
 import { DoctorService } from '../../../core/services/doctors.service';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, Route, Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -18,7 +18,11 @@ export class DoctorListComponent implements OnInit {
   specialty: string = '';
   hospital: string = '';
 
-  constructor(private doctorService: DoctorService) {}
+  constructor(
+    private doctorService: DoctorService,
+    private route: ActivatedRoute,
+    private router: Router,
+  ) {}
 
   loadDoctors() {
     // ekhane ekta function create korsi
@@ -36,11 +40,23 @@ export class DoctorListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loadDoctors(); //loadDoctor fuiction ta onInit e call korsi jate page load hower asathe sathe info ta dekhay
+    this.route.queryParams.subscribe((params) => {
+      //fire er time e url e ki ase oita er route e subscrbie korbe
+      this.city = params['city'] || '';
+      this.specialty = params['specialty'] || '';
+      this.hospital = params['hospital'];
+      this.loadDoctors(); //loadDoctor fuiction ta onInit e call korsi jate page load hower asathe sathe info ta dekhay, ekhane city or speciality variable pass kora lage nai because ogula global variable hisab e call kora
+    });
   }
 
   onFilterChange(): void {
-    // filter change hole abar doctor load kora hobe
-    this.loadDoctors(); //kivabe kaj kore ekhono uncertain, but filter change hole abar doctor load kora hobe
+    //jokhon html e kono option select korbe tokhon ei method fire korbe
+    this.router.navigate(['/doctors'], {
+      queryParams: {
+        city: this.city || null,
+        specialty: this.specialty || null,
+        hospital: this.hospital || null,
+      },
+    });
   }
 } // Component end parenthesis
